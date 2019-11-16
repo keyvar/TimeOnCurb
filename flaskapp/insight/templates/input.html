@@ -1,0 +1,121 @@
+<html>
+<head>
+	<!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/starter-template.css" rel="stylesheet">
+</head>
+	<body>
+		<form  action="/output" method="GET">
+				<table>
+					<tr>
+						<td><b>Citizenship</b></td>
+						<td>
+							<select name='citizenship' style="width: 150px;">
+								<option value='us'>U.S.A</option>
+								<option value='nus'>Other</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Airline</b></td>
+						<td>
+							<select id='airline' name='airline' style="width: 150px;">
+								<option value='AAL'>American</option>
+								<option value='UAL'>United</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Flight Number</b></td>
+						<td>
+							<select id='flight' name='flight' style="width: 150px;">
+								
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Terminal</b></td>
+						<td>
+							<select name='terminal' style="width: 150px;">
+								<option value='t1'>t1</option>
+								<option value='t2'>t2</option>
+								<option value='t3'>t3</option>
+								<option value='t4'>t4</option>
+								<option value='t5'>t5</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Seat Row</b></td>
+						<td>
+							<select name='rownumber' style="width: 150px;">
+								<option value=1>1</option>
+								<option value=2>2</option>
+								<option value=3>3</option>
+								<option value=4>4</option>
+								<option value=5>5</option>
+								<option value=6>6</option>
+								<option value=7>7</option>
+								<option value=8>8</option>
+								<option value=9>9</option>
+								<option value=10>10</option>
+								<option value=11>11</option>
+								<option value=12>12</option>
+								<option value=13>13</option>
+								<option value=14>14</option>
+								<option value=15>15</option>
+								<option value=16>16</option>
+								<option value=17>17</option>
+								<option value=18>18</option>
+								<option value=19>19</option>
+								<option value=20>20</option>
+								<option value=21>21</option>
+								<option value=22>22</option>
+								<option value=23>23</option>
+								<option value=24>24</option>
+								<option value=25>25</option>
+								<option value=26>26</option>
+								<option value=27>27</option>
+								<option value=28>28</option>
+								<option value=29>29</option>
+								<option value=30>30</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Depart From</b></td>
+						<td><input name="address" type="text" style="width: 300px;"/></td>
+					</tr>
+					<tr>
+					<td></td>
+					<td><button type="submit" style="width: 150px;">Get Arrival Time</button></td>
+					</tr>
+					<tr>
+					<td></td>
+					<td><img src="/static/arrow.png" /></td>
+					</tr>
+				</table>
+			
+		</form>
+		
+	</body>
+	
+	<script>
+		var al_select = document.getElementById("airline");
+		var al = al_select.options[al_select.selectedIndex].value;
+		var flight_numbers = JSON.parse('{{ flight_numbers | tojson | safe}}');
+		
+		fl_select = document.getElementById('flight')
+		for(index in flight_numbers[al])
+		{
+			val = flight_numbers[al][index]
+			var opt = document.createElement("option");
+			opt.value= val;
+			opt.innerHTML = val; 
+			fl_select.appendChild(opt);
+		}
+	</script>
+	
+</html>
